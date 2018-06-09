@@ -15,7 +15,7 @@ include_directories(${Boost_INCLUDE_DIR} ${PYTHON_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIR})
 
 # Build and link the pylib module
-add_library(sqrtlib SHARED sqrtlib.cpp)
+add_library(sqrtlib SHARED sqrtlib.cpp SquareRoot.cpp)
 target_link_libraries(sqrtlib ${Boost_LIBRARIES} ${PYTHON_LIBRARIES})
 add_dependencies(sqrtlib Boost)
 
