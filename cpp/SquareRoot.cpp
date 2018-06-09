@@ -18,3 +18,12 @@ SquareRoot::calculate(const double t)
 
 	return r;
 }
+
+double
+SquareRoot::calculateArray(double *array)
+{
+	double sum = 0;
+	unsigned long size = *(&array + 1) - array;
+	for(int i = 0; i < size; i++)
+		sum += calculate(array[i]);
+}

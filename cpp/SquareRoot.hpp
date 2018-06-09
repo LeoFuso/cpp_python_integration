@@ -10,7 +10,9 @@ class SquareRoot
 public:
 	~SquareRoot();
 	double
-	calculate(const double);
+	calculate(double);
+	double
+	calculateArray(double *);
 };
 
 #endif //SQUAREROOT_HPP
