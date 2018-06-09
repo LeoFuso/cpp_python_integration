@@ -10,9 +10,12 @@ using namespace boost::python;
 // Defines a python module which will be named "sqrtlib"
 BOOST_PYTHON_MODULE (sqrtlib)
 {
-	/* Defines a SquareRoot class with just one method:
+	/* Defines a SquareRoot class with two methods:
 	 * @calculate Returns the SquareRoot of a given double
+	 * @calculateArray Returns the sum of all square root values of a given double array
+	 * This is a funny one. Python doesn't have method overload. Ha ha.
 	 */
 	class_<SquareRoot> sqrt("SquareRoot");
-	sqrt.def("calculate", &SquareRoot::calculate);
+	sqrt.def("calculate", &SquareRoot::calculate)
+		.def("calculateArray", &SquareRoot::calculateArray);
 }
