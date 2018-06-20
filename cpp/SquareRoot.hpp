@@ -9,10 +9,10 @@ class SquareRoot
 {
 public:
 	~SquareRoot();
-	double
+	static double
 	calculate(double);
-	double
-	calculateArray(double *);
+	static double
+	calculate(double *);
 };
 
 #endif //SQUAREROOT_HPP

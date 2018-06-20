@@ -20,7 +20,7 @@ SquareRoot::calculate(const double t)
 }
 
 double
-SquareRoot::calculateArray(double *array)
+SquareRoot::calculate(double *array)
 {
 	double sum = 0;
 	unsigned long size = *(&array + 1) - array;
