@@ -5,7 +5,9 @@
 #include "SquareRoot.hpp"
 #include <Python.h>
 
-static PyObject *getCalculate(PyObject *self, PyObject *args) {
+static PyObject *
+calculate_wrapper(PyObject *self, PyObject *args)
+{
 
     /* The following element of an array */
     PyObject *sequence;
@@ -19,7 +21,10 @@ static PyObject *getCalculate(PyObject *self, PyObject *args) {
     /* the sequence length */
     unsigned int seq_len;
 
-    /* get one argument as a sequence */
+    /*
+     * get one argument as a sequence
+     * the '0' stands for the data type expected
+     */
     if (!PyArg_ParseTuple(args, "0", &sequence))
         return nullptr;
 
@@ -35,23 +40,27 @@ static PyObject *getCalculate(PyObject *self, PyObject *args) {
 
     array = (double *) calloc(seq_len, sizeof(double));
 
-    if (!array) {
+    if (!array)
+    {
         Py_DECREF(sequence);
         return PyErr_NoMemory();
     }
 
     /*
      * Starts filling up the array
+     * This can be optimized
      */
     unsigned int i;
-    for (i = 0; i < seq_len; i++) {
+    for (i = 0; i < seq_len; i++)
+    {
 
         /* float value */
         PyObject *f_item;
 
         /* item of the python array */
         PyObject *item = PySequence_Fast_GET_ITEM(sequence, i);
-        if(!item) {
+        if (!item)
+        {
             Py_DECREF(sequence);
             free(array);
             return nullptr;
@@ -59,7 +68,8 @@ static PyObject *getCalculate(PyObject *self, PyObject *args) {
 
         f_item = PyNumber_Float(item);
 
-        if(!f_item) {
+        if (!f_item)
+        {
             Py_DECREF(sequence);
             free(array);
             PyErr_SetString(PyExc_TypeError, "all items must be numbers");
@@ -69,26 +79,48 @@ static PyObject *getCalculate(PyObject *self, PyObject *args) {
         Py_DECREF(f_item);
     }
 
-    /* clean up, compute, and return result */
+    /* clean up */
     Py_DECREF(sequence);
 
-    result = SquareRoot::calculate(array);
+    /* compute */
+    SquareRoot squareRoot;
+    result = squareRoot.calculate(array);
+
     free(array);
 
-    /* Probably the 'd' stands for Double data type */
+    /*
+     * and return the result
+     * the 'd' stands for Double data type
+     */
     return Py_BuildValue("d", result);
 }
 
-static PyMethodDef calculateMethods[] = {
-        {"calculate", getCalculate, METH_VARARGS, "Sum of a sequence of square roots of numbers."},
-        {0} /* sentinel */
-};
+static PyMethodDef module_methods_list[] =
+    {
+        {"calculate", (PyCFunction) calculate_wrapper, METH_VARARGS, "Sum of a sequence of square roots of numbers."},
+        {nullptr, nullptr, 0, nullptr} /* sentinel */
+    };
 
-/* This must be changed to Python3 implementation... or not? */
-void
-initSquareRoot(void)
+/*
+ * @see https://docs.python.org/3/c-api/module.html#c.PyModuleDef
+ */
+static struct PyModuleDef moduleDef =
+    {
+        PyModuleDef_HEAD_INIT,
+        "SquareRoot",           /* name of module */
+        "Some description",     /* module documentation, may be NULL */
+        -1,                     /* size of per-interpreter state of the module, or -1 if the module keeps state in global variables. */
+        module_methods_list,
+        nullptr,
+        nullptr,
+        nullptr,
+        nullptr
+    };
+
+PyMODINIT_FUNC
+PyInit_SquareRoot()
 {
-    (void) Py_InitModule("SquareRoot", calculateMethods);
+    return PyModule_Create(&moduleDef);
 }
 
 /*
