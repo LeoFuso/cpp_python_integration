@@ -59,13 +59,19 @@ static PyObject *totalDoubles(PyObject *self, PyObject *args)
     return Py_BuildValue("d", result);
 }
 
+/* the name of the function */
 static PyMethodDef totalMethods[] = {
-    {"total", totalDoubles, METH_VARARGS, "Sum a sequence of numbers."},
+    {"getSum", totalDoubles, METH_VARARGS, "Sum a sequence of numbers."},
     {0} /* sentinel */
 };
 
+/*
+ * method name has to be the same as Py_InitModule argument
+ * also, the name of the file has to be the same as these two.
+ */
+
 void
-inittotal(void)
+initTotal(void)
 {
-    (void) Py_InitModule("total", totalMethods);
+    (void) Py_InitModule("Total", totalMethods);
 }
