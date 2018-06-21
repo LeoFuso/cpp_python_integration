@@ -9,9 +9,9 @@ class SquareRoot
 {
 public:
 	~SquareRoot();
-	static double
+	double
 	calculate(double);
-	static double
+	double
 	calculate(double *);
 };
 

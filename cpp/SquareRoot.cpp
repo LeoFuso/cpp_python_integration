@@ -4,7 +4,7 @@
 
 #include "SquareRoot.hpp"
 
-SquareRoot::~SquareRoot() {}
+SquareRoot::~SquareRoot() = default;
 
 double
 SquareRoot::calculate(const double t)
