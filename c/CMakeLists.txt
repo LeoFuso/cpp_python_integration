@@ -11,12 +11,12 @@ set(CFLAGS_SSE2 "-O3 -march=native")
 find_package(PythonLibs 2.7 REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
 
-add_library(total SHARED total.c)
+add_library(Total SHARED total.c)
 
-set_property(TARGET total PROPERTY COMPILE_FLAGS ${CFLAGS_O0})
+set_property(TARGET Total PROPERTY COMPILE_FLAGS ${CFLAGS_O0})
 
-target_link_libraries(total ${PYTHON_LIBRARIES})
+target_link_libraries(Total ${PYTHON_LIBRARIES})
 
 # Tweaks the name of the library to match what Python expects
-set_target_properties(total PROPERTIES SUFFIX .so)
-set_target_properties(total PROPERTIES PREFIX "")
+set_target_properties(Total PROPERTIES SUFFIX .so)
+set_target_properties(Total PROPERTIES PREFIX "")
