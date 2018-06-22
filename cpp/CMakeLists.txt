@@ -15,10 +15,15 @@ include_directories(${PYTHON_INCLUDE_DIRS})
 # Build and link the SquareRoot module
 add_library(SquareRoot SHARED sqrtlib.cpp SquareRoot.cpp)
 
+# Set the compile flags
 set_property(TARGET SquareRoot PROPERTY COMPILE_FLAGS ${CXXFLAGS_O0})
 
+# Link the library with the Python's dependency
 target_link_libraries(SquareRoot ${PYTHON_LIBRARIES})
 
 # Tweaks the name of the library to match what Python expects
 set_target_properties(SquareRoot PROPERTIES SUFFIX .so)
 set_target_properties(SquareRoot PROPERTIES PREFIX "")
+
+# Copy the Python's main file to the library directory
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/main.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
