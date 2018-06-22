@@ -2,13 +2,15 @@ cmake_minimum_required(VERSION 2.8)
 
 project(CPP_PYTHON_INTEGRATION)
 
+# For development, only
 set(CMAKE_VERBOSE_MAKEFILE on)
+
 set(CMAKE_CXX_STANDARD 11)
 
 set(CXXFLAGS_O0 "-O0")
 set(CXXFLAGS_SSE2 "-O3 -march=native")
 
-# Set the Python version to 2.7
+# Set the Python version to default in the OS
 find_package(PythonLibs REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
 
