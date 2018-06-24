@@ -9,3 +9,5 @@ cmake ..
 make
 python main.py
 ```
+
+_Observação_: Desatualizado
