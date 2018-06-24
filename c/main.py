@@ -1,3 +1,3 @@
-from Total import total
+from Total import getSum
 arr = [1, 2, 3, 4, 5, 6]
-print(total(arr)) 
+print(getSum(arr))
