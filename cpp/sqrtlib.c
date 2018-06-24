@@ -110,7 +110,7 @@ static PyMethodDef module_methods_list[] =
 static struct PyModuleDef moduleDef =
 	{
 		PyModuleDef_HEAD_INIT,
-		"SquareRoot",           /* name of module */
+		"SquarePy",           /* name of module */
 		"Some description",     /* module documentation, may be NULL */
 		-1,                     /* size of per-interpreter state of the module, or -1 if the module keeps state in global variables. */
 		module_methods_list,
@@ -121,7 +121,7 @@ static struct PyModuleDef moduleDef =
 	};
 
 PyMODINIT_FUNC
-PyInit_SquareRoot()
+PyInit_SquarePy()
 {
 	return PyModule_Create(&moduleDef);
 }
