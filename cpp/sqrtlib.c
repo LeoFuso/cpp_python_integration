@@ -1,7 +1,3 @@
-//
-// Created by Leonardo Fuso on 27/05/18.
-//
-
 #include "c_square_root.h"
 #include <Python.h>
 
