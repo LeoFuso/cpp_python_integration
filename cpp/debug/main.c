@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "c_square_root.h"
+#include "../c_square_root.h"
 
 int
 main(void)

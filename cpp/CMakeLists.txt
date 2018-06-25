@@ -54,4 +54,4 @@ add_library(SquarePy SHARED sqrtlib.c)
 target_link_libraries(SquarePy C_SquareRoot ${PYTHON_LIBRARIES})
 
 # Copy the Python's main file to the library directory
-file(COPY python/main.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY debug/main.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
