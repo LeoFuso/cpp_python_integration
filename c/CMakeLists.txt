@@ -4,15 +4,10 @@ project(POC_C_PYTHON_INTEGRATION)
 set(CMAKE_VERBOSE_MAKEFILE on)
 set(CMAKE_C_STANDARD 11)
 
-set(CFLAGS_O0 "-O0")
-set(CFLAGS_SSE2 "-O3 -march=native")
-
 find_package(PythonLibs)
 include_directories(${PYTHON_INCLUDE_DIRS})
 
 add_library(Total SHARED total.c)
-
-set_property(TARGET Total PROPERTY COMPILE_FLAGS ${CFLAGS_O0})
 
 target_link_libraries(Total ${PYTHON_LIBRARIES})
 

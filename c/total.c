@@ -15,53 +15,57 @@ total(double *data, int len)
 static PyObject *
 totalDoubles(PyObject *self, PyObject *args)
 {
-	PyObject *seq;
-	double *dbar;
+	PyObject *sequence;
+	double *array;
 	double result;
-	int seqlen;
+	int sequence_length;
 	int i;
 
 	/* get one argument as a sequence */
-	if (!PyArg_ParseTuple(args, "O", &seq))
+	if (!PyArg_ParseTuple(args, "O", &sequence))
 		return 0;
-	seq = PySequence_Fast(seq, "argument must be iterable");
-	if (!seq)
+
+	sequence = PySequence_Fast(sequence, "argument must be iterable");
+	if (!sequence)
 		return 0;
 
 	/* prepare data as an array of doubles */
-	seqlen = PySequence_Fast_GET_SIZE(seq);
-	dbar = malloc(seqlen * sizeof(double));
-	if (!dbar)
+	sequence_length = PySequence_Fast_GET_SIZE(sequence);
+
+	array = malloc(sequence_length * sizeof(double));
+
+	if (!array)
 	{
-		Py_DECREF(seq);
+		Py_DECREF(sequence);
 		return PyErr_NoMemory();
 	}
-	for (i = 0; i < seqlen; i++)
+
+	for (i = 0; i < sequence_length; i++)
 	{
 		PyObject *fitem;
-		PyObject *item = PySequence_Fast_GET_ITEM(seq, i);
+		PyObject *item = PySequence_Fast_GET_ITEM(sequence, i);
 		if (!item)
 		{
-			Py_DECREF(seq);
-			free(dbar);
+			Py_DECREF(sequence);
+			free(array);
 			return 0;
 		}
 		fitem = PyNumber_Float(item);
 		if (!fitem)
 		{
-			Py_DECREF(seq);
-			free(dbar);
+			Py_DECREF(sequence);
+			free(array);
 			PyErr_SetString(PyExc_TypeError, "all items must be numbers");
 			return 0;
 		}
-		dbar[i] = PyFloat_AS_DOUBLE(fitem);
+		array[i] = PyFloat_AS_DOUBLE(fitem);
 		Py_DECREF(fitem);
 	}
 
 	/* clean up, compute, and return result */
-	Py_DECREF(seq);
-	result = total(dbar, seqlen);
-	free(dbar);
+	Py_DECREF(sequence);
+	result = total(array, sequence_length);
+	free(array);
 	return Py_BuildValue("d", result);
 }
 
