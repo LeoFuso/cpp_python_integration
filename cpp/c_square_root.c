@@ -1,11 +1,7 @@
-//
-// Created by Leonardo Fuso on 24/06/18.
-//
-
 #include "c_square_root.h"
 
 double
-calculate(double* array){
+calculate_sequence(double *array){
 
 	/* The type of the C++ object */
 	SquareRoot_type object = NULL;

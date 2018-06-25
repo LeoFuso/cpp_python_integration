@@ -9,7 +9,7 @@
 #include <stddef.h>
 
 double
-calculate(double*);
+calculate_sequence(double *);
 
 double
 calculate_single(double);
