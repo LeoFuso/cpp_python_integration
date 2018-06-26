@@ -10,5 +10,6 @@ mkdir build
 cd build
 cmake ..
 make
-python main.py
+python main.py # and
+./main
 ```
