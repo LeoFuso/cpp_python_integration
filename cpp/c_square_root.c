@@ -1,7 +1,7 @@
 #include "c_square_root.h"
 
 double
-calculate_sequence(double *array){
+calculate_sequence(double *array, unsigned int size){
 
 	/* The type of the C++ object */
 	SquareRoot_type object = NULL;
@@ -17,7 +17,7 @@ calculate_sequence(double *array){
 	}
 
 	/* operation on the object */
-	result = _array_calculate_(object, array);
+	result = _array_calculate_(object, array, size);
 
 	/* cleaning up memory */
 	_destroy_(object);

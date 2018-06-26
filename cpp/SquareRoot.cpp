@@ -2,6 +2,7 @@
 // Created by Leonardo Fuso on 27/05/18.
 //
 
+
 #include "SquareRoot.hpp"
 
 SquareRoot::~SquareRoot() = default;
@@ -19,11 +20,16 @@ SquareRoot::calculate(const double t)
 	return r;
 }
 
+template<class T>
+constexpr size_t len(T &a)
+{
+	return sizeof(a) / sizeof(typename std::remove_all_extents<T>::type);
+}
+
 double
-SquareRoot::calculate(double *array)
+SquareRoot::calculate(double *array, unsigned int size)
 {
 	double sum = 0;
-	unsigned long size = *(&array + 1) - array;
 	for(int i = 0; i < size; i++)
 		sum += calculate(array[i]);
 }

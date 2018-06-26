@@ -20,7 +20,7 @@ EXTERN_C void
 _destroy_(SquareRoot_type SquareRoot);
 
 EXTERN_C double
-_array_calculate_(SquareRoot_type self, double *);
+_array_calculate_(SquareRoot_type self, double *, unsigned int);
 
 EXTERN_C double
 _calculate_(SquareRoot_type self, double);

@@ -44,7 +44,6 @@ add_library(C_SquareRoot SHARED c_square_root.c)
 # Link the C_SquareRoot lib with the SquareRoot_C_Adapter lib
 target_link_libraries(C_SquareRoot SquareRoot_C_Adapter)
 
-
 # Set the Python version to default in the OS
 find_package(PythonLibs REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
@@ -53,5 +52,12 @@ add_library(SquarePy SHARED sqrtlib.c)
 
 target_link_libraries(SquarePy C_SquareRoot ${PYTHON_LIBRARIES})
 
+### Debug
+
+# main.py
 # Copy the Python's main file to the library directory
 file(COPY debug/main.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+# main.c
+add_executable(main debug/main.c)
+target_link_libraries(main C_SquareRoot)

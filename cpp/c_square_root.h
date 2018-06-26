@@ -9,9 +9,9 @@
 #include <stddef.h>
 
 double
-calculate_sequence(double *);
+calculate_single(double);
 
 double
-calculate_single(double);
+calculate_sequence(double *, unsigned int);
 
 #endif //C_SQUARE_ROOT_H

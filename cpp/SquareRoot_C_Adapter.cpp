@@ -19,10 +19,10 @@ _destroy_(SquareRoot_type untyped_ptr)
 }
 
 double
-_array_calculate_(SquareRoot_type untyped_self, double *array)
+_array_calculate_(SquareRoot_type untyped_self, double *array, unsigned int size)
 {
 	SquareRoot *typed_ptr = static_cast<SquareRoot *>(untyped_self);
-	return typed_ptr->calculate(array);
+	return typed_ptr->calculate(array, size);
 }
 
 double
